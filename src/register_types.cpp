@@ -4,6 +4,10 @@
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
 
+#include <godot_cpp/classes/engine.hpp>
+
+#include "my_singleton.h"
+
 using namespace godot;
 
 void initialize_gdextension_types(ModuleInitializationLevel p_level)
@@ -11,7 +15,14 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level)
 	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
 		return;
 	}
-	//GDREGISTER_CLASS(YourClass);
+
+	GDREGISTER_CLASS(MySingleton);
+
+	Engine *engine = Engine::get_singleton();
+	// in the actual code, this singleton handles input, so it would be bad to spawn it in the editor.
+	if (!engine->is_editor_hint()) {
+		engine->register_singleton(MySingleton::get_class_static(), memnew(MySingleton));
+	}
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {

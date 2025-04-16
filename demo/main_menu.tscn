@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://brxd7tgqg310x"]
+
+[ext_resource type="Script" uid="uid://cw6662mhy6pgd" path="res://cheese_label.gd" id="1_06t4h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rhts7"]
+font_size = 36
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "(text will be replaced at startup)"
+label_settings = SubResource("LabelSettings_rhts7")
+script = ExtResource("1_06t4h")
